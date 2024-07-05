@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Negócios Canvas</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
+    <style>
+        
+        .text-center input {
+            border-color: #029a53;
+        }
+
+        .oval {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 10px;
+            background-color: #029a53;
+            color: white;
+            margin-right: 10px;
+            margin-bottom: 15px;
+        }
+        .blue-block {
+            background-color: #6aa3ff;
+            color: white;
+            padding: 10px;
+            border: 1px solid #b8daff;
+            border-radius: 8px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        .pink-block {
+            background-color: #eb4e91;
+            color: white;
+            padding: 10px;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .red-block {
+            background-color: #ff220e;
+            color: white;
+            padding: 10px;
+            border: 1px solid #fc2033;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .block-title {
+            font-weight: bold;
+        }
+        .canvas-container {
+            margin-top: 20px;
+        }
+
+        .saveButton {
+            display: flex;
+            justify-content: center;
+        }
+
+        .saveCanvasBtn {
+            padding: 10px 20px;
+            background-color: #029a53;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvasArea">
+        <div class="container">
+            <div class="text-center">
+                <div class="d-flex justify-content-center align-items-center mt-4">
+                    <div class="oval">Titulo:</div>
+                    <input type="text" class="form-control" placeholder="Insira o Titulo">
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="oval">Data:</div>
+                    <input type="text" class="form-control mb-2 mx-9 mr-2" placeholder="Insira a data" style="max-width: 500px;">
+                    <div class="oval">Versão:</div>
+                    <input type="text" class="form-control mb-2 mx-9" placeholder="Insira a versão" style="max-width: 500px;">
+                </div>
+            </div>      
+                            <div class="row">
+                    <div class="col-md-4">
+                        <div class="blue-block">
+                            <div class="block-title">Parcerias Principais</div>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="blue-block">
+                            <div class="block-title">Atividades Principais</div>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="blue-block">
+                            <div class="block-title">Recursos Principais</div>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="pink-block">
+                            <div class="block-title">Valores Propostos</div>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="pink-block">
+                            <div class="block-title">Estrutura de custos</div>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="pink-block">
+                            <div class="block-title">Fonte de receitas</div>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="red-block">
+                            <div class="block-title">Relacionamento com clientes</div>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="red-block">
+                            <div class="block-title">Canais</div>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="red-block">
+                    <div class="block-title">Segmentos de clientes</div>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <div class="saveButton">
+        <button id="saveCanvasBtn" class="saveCanvasBtn">Salvar CANVAS</button>
+    </div>
+    
+
+    <script>
+        let downloadCount = 0;
+        const maxDownloads = 3;
+
+        document.getElementById('saveCanvasBtn').addEventListener('click', function() {
+            if (downloadCount < maxDownloads) {
+                html2canvas(document.querySelector(".canvasArea")).then(canvas => {
+                    let link = document.createElement('a');
+                    link.download = 'canvas-image.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    downloadCount++;
+                    if (downloadCount >= maxDownloads) {
+                        document.getElementById('saveCanvasBtn').disabled = true;
+                        document.getElementById('saveCanvasBtn').innerText = 'Limite de downloads atingido';
+                    }
+                }).catch(err => {
+                    console.error('Falha ao salvar o CANVAS como imagem:', err);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

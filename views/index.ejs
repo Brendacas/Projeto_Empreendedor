@@ -1,0 +1,50 @@
+<%- include("head.ejs"); %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Início</title>
+<header class="container">
+    <h1 class="title">CANVAS ONLINE</h1>
+    <p class="sub">Desbloqueie a Criatividade do seu negocio, crie de forma pratica seu modelo de negocio</p>
+    <button class="btn" onclick="redirectToCadastro()">Começe Agora</button>
+</header>
+
+<style>
+.title {
+  margin-top: 150px;
+  color: #000;
+  text-align: center;
+  height: 50px; /* Ajuste a altura conforme necessário */
+}
+
+.sub {
+  color: #000;
+  text-align: center;
+  height: 50px; /* Ajuste a altura conforme necessário */
+}
+.btn {
+    border: 5px;
+    color: #1d1c1c;
+    background-color: #f19595;
+    padding: 10px;
+    width: 250px;
+    height: 50px;
+    display: inline-block;
+    margin: 150px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center; /* Centraliza horizontalmente */
+    margin-top: 60px;
+    margin-left: 600px;
+}
+</style>
+
+<script>
+    function redirectToCadastro() {
+      window.location.href = "/cadastro";
+    }
+</script>
+
+</head>
+</html>
